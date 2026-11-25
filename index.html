@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nafianstr Store</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;background:#0c1020;color:#f5f6ff;min-height:100vh}
+button{font-family:inherit;cursor:pointer}
+.navbar{height:70px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:#11162a;border-bottom:1px solid #ffffff12;position:sticky;top:0;z-index:10}
+.logo{font-size:18px;font-weight:900;color:white;text-decoration:none}
+.logo span{color:#9383ff}
+.navbar nav{display:flex;gap:20px}
+.navbar nav a{color:#bbc3dc;text-decoration:none;font-size:13px}
+.nav-order,.primary{background:linear-gradient(110deg,#8065ff,#5595ff);color:white;border:0;border-radius:12px;padding:13px 18px;font-weight:700}
+.page{display:none;min-height:85vh}
+.page.active{display:block;animation:appear .25s}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{max-width:1100px;margin:auto;padding:100px 25px 55px}
+.badge{display:inline-block;padding:9px 13px;border:1px solid #8b7bff55;background:#8170ff16;border-radius:30px;color:#a99aff;font-size:11px;letter-spacing:2px}
+.hero h1{font-size:clamp(43px,8vw,80px);font-weight:900;line-height:1.1;margin-top:25px;letter-spacing:-3px}
+.gradient{background:linear-gradient(90deg,#a18aff,#58aaff);background-clip:text;color:transparent}
+.hero p{color:#aab3cd;margin-top:20px;line-height:1.8}
+.primary{margin-top:26px}
+.stats{display:flex;gap:50px;margin-top:65px}
+.stats div{display:flex;flex-direction:column;gap:7px}
+.stats strong{font-size:20px}
+.stats small{color:#7884a5;font-size:10px;letter-spacing:1px}
+.container{max-width:1100px;margin:auto;padding:65px 22px}
+.heading small{color:#9b8aff;letter-spacing:2px;font-size:11px}
+.heading h1{font-size:34px;margin:15px 0}
+.heading p{color:#aab3cd;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.card{border:1px solid #ffffff13;border-radius:20px;padding:23px;min-height:210px;transition:.2s;cursor:pointer}
+.card:hover{transform:translateY(-4px);border-color:#8d7dff}
+.ff{background:linear-gradient(145deg,#392c4d,#1c2037)}
+.ml{background:linear-gradient(145deg,#233a56,#1b2035)}
+.roblox{background:linear-gradient(145deg,#37364e,#1c2036)}
+.jasdit{background:linear-gradient(145deg,#3c2b4c,#202035)}
+.card .emoji{font-size:30px;margin-bottom:22px}
+.card small{color:#aab7dc;font-size:10px;letter-spacing:1px}
+.card h2{font-size:18px;margin:10px 0}
+.card p{font-size:12px;color:#b9c2d9}
+.card .arrow{border-top:1px solid #ffffff15;margin-top:20px;padding-top:13px;font-size:12px}
+.back{background:#ffffff0b;border:1px solid #ffffff20;color:#e0e4f5;border-radius:10px;padding:12px 17px;margin-bottom:25px}
+.section-title{font-size:28px;margin:10px 0}
+.muted{color:#aab3cd;font-size:13px;line-height:1.8}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0}
+.tab{background:#222943;color:#d8def3;border:1px solid #ffffff15;border-radius:11px;padding:12px 17px}
+.tab.active{background:linear-gradient(110deg,#8065ff,#5595ff);border-color:transparent;color:white}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:25px}
+.product{background:linear-gradient(145deg,#252c45,#1b2035);border:1px solid #ffffff13;color:white;text-align:left;padding:18px;border-radius:14px;transition:.2s}
+.product:hover{border-color:#8b79ff;transform:translateY(-2px)}
+.product strong{display:block;font-size:14px}
+.product span{display:block;color:#a99aff;margin-top:9px;font-size:13px}
+.rules{background:#27243b;border:1px solid #ffffff12;padding:18px;border-radius:15px;margin-top:20px}
+.rules h3{margin-bottom:10px}
+.rules p{font-size:12px;line-height:1.9;color:#d2d6e9}
+.checkout{max-width:580px;margin:35px auto 0;background:#20263e;border:1px solid #ffffff13;padding:22px;border-radius:20px}
+.checkout h2{font-size:21px;margin-bottom:18px}
+.checkout label{display:block;margin:15px 0 8px;font-size:13px}
+.checkout input,.checkout textarea{width:100%;background:#11172b;border:1px solid #ffffff20;color:white;border-radius:10px;padding:13px;font:inherit;outline:none}
+.checkout textarea{min-height:85px;resize:vertical}
+.warning{background:#493d2428;border:1px solid #e5ba4b55;color:#f1d17f;padding:13px;border-radius:11px;margin:15px 0;font-size:12px;line-height:1.8}
+.payments{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.pay{background:#171d32;border:1px solid #ffffff20;color:white;border-radius:11px;padding:15px}
+.pay.active{border-color:#9684ff;background:#352c59}
+.payinfo{background:#11172b;border-radius:11px;padding:15px;margin-top:13px;font-size:13px;line-height:1.9;display:none}
+.payinfo.show{display:block}
+.summary{background:#141a2c;padding:15px;border-radius:12px;margin-top:15px;font-size:13px}
+.summary div{display:flex;justify-content:space-between;margin:8px 0;gap:10px}
+.summary .total{border-top:1px solid #ffffff20;padding-top:12px;color:#b4a4ff;font-weight:800}
+.confirm{width:100%;margin-top:16px}
+footer{text-align:center;color:#69748f;padding:30px 12px;font-size:11px;border-top:1px solid #ffffff08;margin-top:25px}
+@media(max-width:850px){.cards{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){
+.navbar{padding:0 15px;height:62px}.logo{font-size:15px}.navbar nav{gap:12px}.navbar nav a{font-size:11px}.nav-order{display:none}
+.hero{padding:80px 22px 40px}.hero h1{font-size:47px;letter-spacing:-2px}.hero p{font-size:13px}
+.stats{gap:28px;margin-top:50px}.stats strong{font-size:17px}.stats small{font-size:9px}
+.container{padding:48px 16px}.heading h1{font-size:28px}.cards{grid-template-columns:1fr;gap:12px}.card{min-height:190px}
+.products{grid-template-columns:1fr 1fr;gap:9px}.product{padding:15px}.product strong{font-size:13px}
+.checkout{padding:16px;margin-top:25px}.payments{grid-template-columns:1fr 1fr}
+}
+@media(max-width:360px){.products{grid-template-columns:1fr}.hero h1{font-size:40px}}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+<a href="#" class="logo" onclick="home()">N <span>NAFIANSTR.</span></a>
+<nav>
+<a href="#" onclick="home()">Home</a>
+<a href="#" onclick="catalog()">Katalog</a>
+</nav>
+<button class="nav-order" onclick="catalog()">Order ↗</button>
+</header>
+
+<!-- HOME -->
+<section id="home" class="page active">
+<div class="hero">
+<div class="badge">✦ DIGITAL STORE</div>
+<h1>Welcome to<br><span class="gradient">NAFIANSTR.</span></h1>
+<p>Tempat top up game dan layanan digital<br> dengan proses order yang mudah.</p>
+<button class="primary" onclick="catalog()">Mulai Belanja ↗</button>
+<div class="stats">
+<div><strong>4</strong><small>LAYANAN</small></div>
+<div><strong>Fast</strong><small>ORDER PROCESS</small></div>
+<div><strong>24/7</strong><small>ONLINE ORDER</small></div>
+</div>
+</div>
+<footer>© 2026 Nafianstr. All rights reserved.</footer>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog" class="page">
+<div class="container">
+<div class="heading"><small>OUR SERVICES</small><h1>Pilih layanan <span class="gradient">favoritmu</span></h1><p>Tap kategori untuk melihat produk.</p></div>
+<div class="cards">
+<div class="card ff" onclick="openShop('ff')"><div class="emoji">🔥</div><small>GAME TOP UP</small><h2>Free Fire</h2><p>Diamond & Membership</p><div class="arrow">Lihat produk →</div></div>
+<div class="card ml" onclick="openShop('ml')"><div class="emoji">⚔️</div><small>GAME TOP UP</small><h2>Mobile Legends</h2><p>Diamond & WDP</p><div class="arrow">Lihat produk →</div></div>
+<div class="card roblox" onclick="openShop('roblox')"><div class="emoji">🎮</div><small>GAME TOP UP</small><h2>Roblox</h2><p>Robux via username</p><div class="arrow">Lihat produk →</div></div>
+<div class="card jasdit" onclick="openShop('jasdit')"><div class="emoji">✦</div><small>DIGITAL SERVICE</small><h2>Jasdit Nafian×Mat</h2><p>Jasa edit video</p><div class="arrow">Lihat layanan →</div></div>
+</div>
+<button class="back" onclick="home()" style="margin-top:25px">← Home</button>
+</div>
+<footer>© 2026 Nafianstr</footer>
+</section>
+
+<!-- SHOP -->
+<section id="shop" class="page">
+<div class="container">
+<button class="back" onclick="catalog()">← Kembali ke Katalog</button>
+<div class="heading"><small>PRODUCT STORE</small><h1 id="shopTitle">Produk</h1><p id="shopDesc">Pilih produk yang diinginkan.</p></div>
+<div class="tabs" id="tabs"></div>
+<div class="products" id="products"></div>
+
+<!-- CHECKOUT -->
+<div class="checkout" id="checkout" style="display:none">
+<h2>Detail Pesanan</h2>
+<div id="inputArea"></div>
+<div class="warning" id="warning">⚠️ Pastikan ID/username dan detail pesanan sudah benar sebelum konfirmasi.</div>
+<div id="chosen"></div>
+<label>Metode Pembayaran</label>
+<div class="payments">
+<button class="pay" onclick="setPay('DANA',this)">DANA</button>
+<button class="pay" onclick="setPay('SeaBank',this)">SeaBank</button>
+</div>
+<div class="payinfo" id="payinfo"></div>
+<div class="summary" id="summary"></div>
+<button class="primary confirm" onclick="confirmOrder()">Konfirmasi Pesanan via WhatsApp</button>
+</div>
+</div>
+<footer>© 2026 Nafianstr</footer>
+</section>
+
+<script>
+const FFdiamond=[
+[50,7423],[55,8168],[70,9611],[75,10357],[80,11103],[90,12594],[100,13345],[120,16328],[140,17723],[145,18468],[150,19214],[160,20705],[170,22197],[190,23645],[210,25834],[280,33945],[300,36928],[355,42056],[360,42802],[375,45039],[405,47979],[425,50168],[475,56090],[495,58279],[500,59024],[565,67136],[635,75247],[720,82587],[725,83332],[740,85570],[770,88599],[790,90698],[860,98809],[930,106921],[1000,115032],[1075,123143],[1440,163674],[1450,165165],[2000,225654],[2020,231546],[2160,244760],[2880,325847],[3600,406934],[4320,488021],[7290,813615]
+];
+const FFmembership=[["Membership Mingguan",26000],["Membership Bulanan",75000]];
+const MLdiamond=[
+[59,19000],[71,23000],[74,24000],[85,27000],[90,28000],[110,35000],[113,35500],[128,40000],[148,45500],[170,51500],[184,56500],[224,68000],[240,72500],[258,78000],[277,84000],[284,85000],[296,88000],[301,90500],[335,100000],[358,107500],[370,110500],[386,114500],[408,120500],[425,126500],[452,133500],[875,249217],[938,268034],[970,277178]
+];
+const MLwdp=[["WDP x1",32500],["WDP x2",63500],["WDP x3",94500],["WDP x4",124500],["WDP x5",155500]];
+const ROBUX=[[100,18500],[200,36000],[300,53000],[400,70000],[500,87000],[600,104000],[700,121000],[800,139000],[900,155000],[1000,172000]];
+const JASDIT=[["Solo",6000],["Duo",10000],["Squad",15000],["Guild",25000]];
+
+let svc="",category="",chosen=null,pay="";
+const $=id=>document.getElementById(id);
+function rupiah(n){return "Rp"+Number(n).toLocaleString("id-ID")}
+function home(){show("home")}
+function catalog(){show("catalog")}
+function show(id){["home","catalog","shop"].forEach(x=>$(x).classList.remove("active"));$(id).classList.add("active");window.scrollTo(0,0)}
+
+function openShop(s){
+svc=s;chosen=null;pay="";
+show("shop");
+$("checkout").style.display="none";
+$("tabs").innerHTML="";
+$("products").innerHTML="";
+const titles={ff:"🔥 Free Fire",ml:"⚔️ Mobile Legends",roblox:"🎮 Roblox",jasdit:"✦ Jasdit Nafian×Mat"};
+$("shopTitle").textContent=titles[s];
+$("shopDesc").textContent="Pilih kategori dan produk yang ingin kamu pesan.";
+if(s==="ff")makeTabs([["Diamond",FFdiamond],["Membership",FFmembership]]);
+if(s==="ml")makeTabs([["Diamond",MLdiamond],["Weekly Diamond Pass",MLwdp]]);
+if(s==="roblox")renderProducts(ROBUX.map(x=>[x[0]+" Robux",x[1]]));
+if(s==="jasdit")renderProducts(JASDIT);
+}
+
+function makeTabs(data){
+data.forEach((tab,i)=>{
+const b=document.createElement("button");
+b.className="tab"+(i===0?" active":"");
+b.textContent=tab[0];
+b.onclick=()=>{
+document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+b.classList.add("active");
+chosen=null;
+$("checkout").style.display="none";
+renderProducts(tab[1].map(x=>Array.isArray(x)&&typeof x[0]==="number"?[x[0]+" Diamond",x[1]]:x));
+};
+$("tabs").appendChild(b);
+});
+renderProducts(data[0][1].map(x=>Array.isArray(x)&&typeof x[0]==="number"?[x[0]+" Diamond",x[1]]:x));
+}
+
+function renderProducts(list){
+$("products").innerHTML="";
+list.forEach(item=>{
+const b=document.createElement("button");
+b.className="product";
+b.innerHTML="<strong>"+item[0]+"</strong><span>"+rupiah(item[1])+"</span>";
+b.onclick=()=>{
+chosen={name:item[0],price:item[1]};
+document.querySelectorAll(".product").forEach(x=>x.style.borderColor="#ffffff13");
+b.style.borderColor="#9380ff";
+showCheckout();
+};
+$("products").appendChild(b);
+});
+}
+
+function showCheckout(){
+$("checkout").style.display="block";
+pay="";
+$("payinfo").classList.remove("show");
+document.querySelectorAll(".pay").forEach(x=>x.classList.remove("active"));
+const inputArea=$("inputArea");
+if(svc==="ff"||svc==="ml"){
+inputArea.innerHTML='<label>ID Player</label><input id="player" placeholder="Masukkan ID Player" inputmode="numeric">';
+}else if(svc==="roblox"){
+inputArea.innerHTML='<label>Username Roblox</label><input id="player" placeholder="Masukkan username Roblox"><p class="muted" style="margin-top:10px">Top up via username. Estimasi masuk 5–60 menit. Proses cepat.</p><div class="warning">Informasi usia/akun: pastikan akun memenuhi persyaratan verifikasi platform.</div>';
+}else{
+inputArea.innerHTML='<label>Detail permintaan / username / link video</label><textarea id="player" placeholder="Tulis detail order Jasdit kamu"></textarea><div class="rules"><h3>RULES JASDIT</h3><p>1. Bukti transfer wajib disertakan.<br>2. Kirim screenshot foto dengan grafik Max rata kanan.<br>3. Usahakan preset di bawah 5 MB.<br>4. Harap sabar saat order diproses.</p></div>';
+}
+$("chosen").innerHTML='<div class="summary"><div><span>Produk</span><b>'+chosen.name+'</b></div><div><span>Harga</span><b>'+rupiah(chosen.price)+'</b></div></div>';
+updateSummary();
+$("checkout").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function setPay(method,button){
+pay=method;
+document.querySelectorAll(".pay").forEach(x=>x.classList.remove("active"));
+button.classList.add("active");
+const info=$("payinfo");
+info.classList.add("show");
+if(method==="DANA"){
+info.innerHTML="<b>DANA</b><br>Nomor: 0895385310004<br>Nama: SANUSI<br>Biaya admin Rp85";
+}else{
+info.innerHTML="<b>SeaBank</b><br>Nomor: 901976571970<br>Nama: RAUDHOTUL JANNAH<br>Biaya admin Rp85";
+}
+updateSummary();
+}
+function updateSummary(){
+const fee=pay?85:0;
+const price=chosen?chosen.price:0;
+$("summary").innerHTML="<div><span>Harga produk</span><span>"+rupiah(price)+"</span></div><div><span>Admin</span><span>"+rupiah(fee)+"</span></div><div class='total'><span>Total</span><span>"+rupiah(price+fee)+"</span></div>";
+}
+function confirmOrder(){
+if(!chosen){alert("Pilih produk terlebih dahulu.");return}
+const player=$("player")?.value.trim();
+if(!player){alert("Isi ID, username, atau detail order terlebih dahulu.");$("player")?.focus();return}
+if(!pay){alert("Pilih metode pembayaran terlebih dahulu.");return}
+const fee=85,total=chosen.price+fee;
+const names={ff:"Free Fire",ml:"Mobile Legends",roblox:"Roblox",jasdit:"Jasdit Nafian×Mat"};
+const msg="ORDER NAFIANSTR\n\nLayanan: "+names[svc]+"\nProduk: "+chosen.name+"\nID/Username/Detail: "+player+"\nMetode pembayaran: "+pay+"\nHarga: "+rupiah(chosen.price)+"\nAdmin: "+rupiah(fee)+"\nTOTAL: "+rupiah(total)+"\n\nSaya akan mengirim bukti transfer. Pesanan tidak dilayani tanpa bukti transfer.";
+window.open("https://wa.me/62895385310004?text="+encodeURIComponent(msg),"_blank");
+}
+</script>
+</body>
+</html>
